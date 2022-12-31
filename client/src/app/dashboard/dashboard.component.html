@@ -1,0 +1,80 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <div class="mb-3">
+    <label for="criteria">Criteria</label>
+    <select
+      class="form-control"
+      [(ngModel)]="filter.criteria"
+      name="criteria"
+      id="criteria"
+      required
+    >
+      <option value="Name">Name</option>
+      <option value="DateOfBirth">Date Of Birth</option>
+      <option value="Job">Job</option>
+      <option value="Address">Address</option>
+      <option value="Phone">Phone</option>
+      <option value="Email">Email</option>
+      <option value="orders">Orders</option>
+      <option value="ordersTotal">Orders Total</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="operation">Operation</label>
+    <select
+      class="form-control"
+      [(ngModel)]="filter.operation"
+      name="operation"
+      id="operation"
+      required
+    >
+      <option value="equal">Equal</option>
+      <option value="contains">Contains</option>
+      <option value="greaterthan">Greater Than</option>
+      <option value="lessthan">Less Than</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="value">Value</label>
+    <input
+      class="form-control"
+      [(ngModel)]="filter.value"
+      name="value"
+      id="value"
+      required
+    />
+  </div>
+
+  <button class="btn btn-primary" type="submit">Fetch</button>
+</form>
+
+<table
+  *ngIf="customers$ | async; let customers"
+  class="table table-hover table-striped"
+>
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date Of Birth</th>
+      <th scope="col">Job</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let customer of customers">
+      <tr>
+        <td>{{ customer._id }}</td>
+        <td>{{ customer.Name }}</td>
+        <td>{{ customer.DateOfBirth }}</td>
+        <td>{{ customer.Job }}</td>
+        <td>{{ customer.Address }}</td>
+        <td>{{ customer.Phone }}</td>
+        <td>{{ customer.Email }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

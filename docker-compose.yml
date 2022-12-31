@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - ./db:/data/db
+    network_mode: host
+    command: "mongod --port 27017"
+    logging:
+      driver: none
+  api:
+    build: ./api/
+    env_file:
+      - ./api/.env
+    command: npm run start
+    network_mode: host
+    depends_on:
+      - mongodb
+  client:
+    build: ./client/
+    command: npm run start
+    network_mode: host
+    depends_on:
+      - mongodb
+      - api

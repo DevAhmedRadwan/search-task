@@ -1,0 +1,23 @@
+{
+  "name": "task-api",
+  "version": "1.0.0",
+  "description": "task-api",
+  "main": "./src/server.js",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon -r dotenv/config ./src/server.js dotenv_config_path=.env"
+  },
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "mongoose": "6.7.0"
+  },
+  "devDependencies": {
+    "dotenv": "16.0.3",
+    "nodemon": "2.0.20"
+  }
+}
